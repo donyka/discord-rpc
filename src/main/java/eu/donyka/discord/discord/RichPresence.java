@@ -26,6 +26,7 @@ public class RichPresence {
     public int partyMax;
 
     public RichPresence() {
+        this.startTimestamp = System.currentTimeMillis() / 1000;
     }
 
     public static RichPresenceBuilder builder() {

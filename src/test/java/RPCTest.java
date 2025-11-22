@@ -1,11 +1,19 @@
 
+
+import eu.donyka.discord.RPCHandler;
 import eu.donyka.discord.discord.RichPresence;
 import eu.donyka.discord.discord.RichPresenceBuilder;
-import eu.donyka.discord.RPCHandler;
+import eu.donyka.discord.exceptions.UnsupportedOsType;
 
-public class TestIPC {
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
-    public static void startup() {
+public class RPCTest {
+
+    public static void main(String[] args) throws UnsupportedOsType {
+        ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(2);
+
         RPCHandler.setOnReady(user -> {
             RichPresence presence = RichPresence.builder()
                     .details("Version: 1.0.0")
@@ -28,10 +36,8 @@ public class TestIPC {
         });
 
         RPCHandler.startup("1386072578061373661", false);
+
+        scheduledExecutorService.scheduleAtFixedRate(() -> {}, 0, 500, TimeUnit.MILLISECONDS);
     }
 
-    public static void shutdown() {
-        RPCHandler.shutdown();
-    }
 }
-
