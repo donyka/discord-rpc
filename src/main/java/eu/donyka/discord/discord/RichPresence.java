@@ -25,9 +25,7 @@ public class RichPresence {
     public String button_url_1;
     public int partyMax;
 
-    public RichPresence() {
-        this.startTimestamp = System.currentTimeMillis() / 1000;
-    }
+    public RichPresence() {}
 
     public static RichPresenceBuilder builder() {
         return RichPresenceBuilder.builder();
